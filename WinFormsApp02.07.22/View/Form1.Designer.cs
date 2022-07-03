@@ -47,6 +47,9 @@ namespace WinFormsApp02._07._22
             this.txtPostCard = new System.Windows.Forms.TextBox();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.txtNameCity = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnRemoveCountry = new System.Windows.Forms.Button();
+            this.btnRemoveCity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxCountry
@@ -201,11 +204,43 @@ namespace WinFormsApp02._07._22
             this.txtNameCity.Size = new System.Drawing.Size(120, 23);
             this.txtNameCity.TabIndex = 11;
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(719, 415);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 18;
+            this.btnExit.Text = "Выход";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnRemoveCountry
+            // 
+            this.btnRemoveCountry.Location = new System.Drawing.Point(319, 258);
+            this.btnRemoveCountry.Name = "btnRemoveCountry";
+            this.btnRemoveCountry.Size = new System.Drawing.Size(105, 23);
+            this.btnRemoveCountry.TabIndex = 19;
+            this.btnRemoveCountry.Text = "Удалить страну";
+            this.btnRemoveCountry.UseVisualStyleBackColor = true;
+            this.btnRemoveCountry.Click += new System.EventHandler(this.btnRemoveCountry_Click);
+            // 
+            // btnRemoveCity
+            // 
+            this.btnRemoveCity.Location = new System.Drawing.Point(622, 258);
+            this.btnRemoveCity.Name = "btnRemoveCity";
+            this.btnRemoveCity.Size = new System.Drawing.Size(100, 23);
+            this.btnRemoveCity.TabIndex = 20;
+            this.btnRemoveCity.Text = "Удалить город";
+            this.btnRemoveCity.UseVisualStyleBackColor = true;
+            // 
             // FormWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRemoveCity);
+            this.Controls.Add(this.btnRemoveCountry);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -226,6 +261,7 @@ namespace WinFormsApp02._07._22
             this.Controls.Add(this.listBoxCountry);
             this.Name = "FormWorld";
             this.Text = "World";
+            this.Load += new System.EventHandler(this.FormWorld_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +287,9 @@ namespace WinFormsApp02._07._22
         private System.Windows.Forms.TextBox txtPostCard;
         private System.Windows.Forms.Button btnAddCity;
         private System.Windows.Forms.TextBox txtNameCity;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnRemoveCountry;
+        private System.Windows.Forms.Button btnRemoveCity;
     }
 }
 

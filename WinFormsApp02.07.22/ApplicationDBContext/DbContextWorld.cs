@@ -10,20 +10,19 @@ namespace WinFormsApp02._07._22.ApplicationDBContext
 {
     public class DbContextWorld:DbContext
     {
-        public List<Country> GetCountries { get; set; } 
+        public List<Country> GetCountries { get; set; } = new List<Country>();
         public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<City> Cities { get; set; } = null!;
 
         public string connectionString;
-        public DbContextWorld(string connectionString)
+        public DbContextWorld()
         {
-            GetCountries = new List<Country>();
-            this.connectionString = connectionString;   // получаем извне строку подключения
             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;
+                           Database=DbWorld.db;Trusted_Connection=True;");
         }
 
     }
