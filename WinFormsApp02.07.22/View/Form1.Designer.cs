@@ -67,6 +67,7 @@ namespace WinFormsApp02._07._22
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(120, 23);
             this.txtName.TabIndex = 1;
+            this.txtName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtName_MouseClick);
             // 
             // btnAdd
             // 
@@ -84,6 +85,7 @@ namespace WinFormsApp02._07._22
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(120, 23);
             this.txtCode.TabIndex = 3;
+            this.txtCode.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCode_MouseClick);
             // 
             // txtPopulation
             // 
@@ -91,6 +93,7 @@ namespace WinFormsApp02._07._22
             this.txtPopulation.Name = "txtPopulation";
             this.txtPopulation.Size = new System.Drawing.Size(120, 23);
             this.txtPopulation.TabIndex = 4;
+            this.txtPopulation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPopulation_MouseClick);
             // 
             // labelName
             // 
@@ -179,6 +182,7 @@ namespace WinFormsApp02._07._22
             this.txtPopulationCity.Name = "txtPopulationCity";
             this.txtPopulationCity.Size = new System.Drawing.Size(120, 23);
             this.txtPopulationCity.TabIndex = 14;
+            this.txtPopulationCity.DoubleClick += new System.EventHandler(this.txtPopulationCity_DoubleClick);
             // 
             // txtPostCard
             // 
@@ -186,6 +190,7 @@ namespace WinFormsApp02._07._22
             this.txtPostCard.Name = "txtPostCard";
             this.txtPostCard.Size = new System.Drawing.Size(120, 23);
             this.txtPostCard.TabIndex = 13;
+            this.txtPostCard.DoubleClick += new System.EventHandler(this.txtPostCard_DoubleClick);
             // 
             // btnAddCity
             // 
@@ -203,6 +208,7 @@ namespace WinFormsApp02._07._22
             this.txtNameCity.Name = "txtNameCity";
             this.txtNameCity.Size = new System.Drawing.Size(120, 23);
             this.txtNameCity.TabIndex = 11;
+            this.txtNameCity.DoubleClick += new System.EventHandler(this.txtNameCity_DoubleClick);
             // 
             // btnExit
             // 

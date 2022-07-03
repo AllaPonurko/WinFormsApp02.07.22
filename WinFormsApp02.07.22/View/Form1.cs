@@ -26,18 +26,19 @@ namespace WinFormsApp02._07._22
         public Country country = new Country();
         public City city = new City();
         private void btnAdd_Click(object sender, EventArgs e)
-        { 
-            if(listBoxCountry!=null)
+        {
+            if (listBoxCountry != null)
             {
-                foreach(var item in listBoxCountry.Items)
+                foreach (var item in listBoxCountry.Items)
                 {
-                    if(txtName.Text==item.ToString())
+                    while (txtName.Text == item.ToString())
                     {
                         MessageBox.Show("Такая страна уже есть!");
+                        return;
                     }
                 }
             }
-            
+
             try
             {
                 country.Name = txtName.Text.ToString();
@@ -52,35 +53,59 @@ namespace WinFormsApp02._07._22
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void btnAddCity_Click(object sender, EventArgs e)
         {
-            foreach (var item in db.GetCountries)
+            if (listBoxCity != null)
             {
-                if (listBoxCountry.Items!= null
-                      && listBoxCountry.SelectedItem.ToString() == item.ToString())
-                    try
+                foreach (var item in listBoxCity.Items)
+                {
+                    while (txtNameCity.Text == item.ToString())
                     {
+                        MessageBox.Show("Такой город уже есть!");
+                        return;
+                    }
+                }
+            }
+            try
+            {
+                while (listBoxCountry.Items == null)
+                {
+                    MessageBox.Show("Сначала создайте страну!");
+                    return;
+                }
+                while (listBoxCountry.SelectedItem == null)
+                {
+                    MessageBox.Show("Выберите страну");
+                    return;
+                }
+                
                         city.Name = txtNameCity.Text.ToString();
                         city.Population = Convert.ToInt32(txtPopulationCity.Text);
                         city.Postcode = Convert.ToInt32(txtPostCard.Text);
                         listBoxCity.Items.Add(city.Name);
-                        item.cities.Add(city);
-                        this.db.Cities.Add(city);
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
+                        
+                        db.Cities.Add(city);
+                        
+                foreach (var item in db.GetCountries)
+                {
+                    if (item.Name == listBoxCountry.SelectedItem.ToString())
                     {
-                        MessageBox.Show(ex.Message);
+                        item.cities.Add(city);
                     }
-                //else
-                //{
-                //    MessageBox.Show("Не выбрана страна!");
-                //}
+                }
+                db.SaveChanges();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
+    
 
         private void FormWorld_Load(object sender, EventArgs e)
         {
@@ -112,14 +137,13 @@ namespace WinFormsApp02._07._22
                 try
                 {
 
-                
                 foreach(var item in db.GetCountries)
                 {
                     if(listBoxCountry.SelectedItem.ToString()==item.Name&&item.cities!=null)   
                     {
                         db.GetCountries.Remove(item);
                         db.SaveChanges();
-                        }
+                    }
                 }
                 foreach (var item in db.Countries)
                 {
@@ -146,6 +170,42 @@ namespace WinFormsApp02._07._22
             }
 
         }
+
+        private void txtName_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtName.Text = null;
+            txtName.BackColor = Color.Beige;
         }
+
+        private void txtCode_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtCode.Text = null;
+            txtCode.BackColor= Color.Beige;
+        }
+
+        private void txtPopulation_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtPopulation.Text = null;
+            txtPopulation.BackColor = Color.Beige;
+        }
+
+        private void txtNameCity_DoubleClick(object sender, EventArgs e)
+        {
+            txtNameCity.Text = null;
+            txtNameCity.BackColor = Color.Beige;
+        }
+
+        private void txtPostCard_DoubleClick(object sender, EventArgs e)
+        {
+            txtPostCard.Text = null;
+            txtPostCard.BackColor= Color.Beige; 
+        }
+
+        private void txtPopulationCity_DoubleClick(object sender, EventArgs e)
+        {
+            txtPopulationCity.Text = null;
+            txtPopulationCity.BackColor = Color.Beige;
+        }
+    }
     }
 
