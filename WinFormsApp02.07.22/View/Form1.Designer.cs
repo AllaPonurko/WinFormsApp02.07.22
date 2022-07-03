@@ -238,6 +238,7 @@ namespace WinFormsApp02._07._22
             this.btnRemoveCity.TabIndex = 20;
             this.btnRemoveCity.Text = "Удалить город";
             this.btnRemoveCity.UseVisualStyleBackColor = true;
+            this.btnRemoveCity.Click += new System.EventHandler(this.btnRemoveCity_Click);
             // 
             // FormWorld
             // 

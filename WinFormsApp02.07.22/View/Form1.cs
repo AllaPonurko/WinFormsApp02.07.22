@@ -85,11 +85,10 @@ namespace WinFormsApp02._07._22
                         city.Name = txtNameCity.Text.ToString();
                         city.Population = Convert.ToInt32(txtPopulationCity.Text);
                         city.Postcode = Convert.ToInt32(txtPostCard.Text);
-                        listBoxCity.Items.Add(city.Name);
-                        
+                        listBoxCity.Items.Add(city.Name); 
                         db.Cities.Add(city);
                         
-                foreach (var item in db.GetCountries)
+                foreach (var item in db.Countries)
                 {
                     if (item.Name == listBoxCountry.SelectedItem.ToString())
                     {
@@ -205,6 +204,45 @@ namespace WinFormsApp02._07._22
         {
             txtPopulationCity.Text = null;
             txtPopulationCity.BackColor = Color.Beige;
+        }
+
+        private void btnRemoveCity_Click(object sender, EventArgs e)
+        {
+            while(listBoxCity.Items==null)
+                {
+                MessageBox.Show("Нет объекта для удаления");
+                return;
+                }
+            while(listBoxCity.SelectedItem==null)
+            {
+                MessageBox.Show("Не выбран город для удаления");
+                return;
+            }
+            try
+            {
+                foreach(var item in db.Cities)
+                {
+                    if(item.Name==listBoxCity.SelectedItem.ToString())
+                    {
+                             db.Cities.Remove(item);
+                    
+                    foreach(var item1 in db.Countries)
+                    {
+                       if(item1.cities.Contains(item))
+                        {
+                            item1.cities.Remove(item);
+                        }
+                    }
+                    }
+                    db.SaveChanges();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
     }

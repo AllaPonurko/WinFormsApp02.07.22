@@ -14,7 +14,7 @@ namespace WinFormsApp02._07._22.ApplicationDBContext
         public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<City> Cities { get; set; } = null!;
 
-        public string connectionString;
+        //public string connectionString;
         public DbContextWorld()
         {
             Database.EnsureCreated();
