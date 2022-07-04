@@ -23,10 +23,16 @@ namespace WinFormsApp02._07._22
 
         }
         DbContextWorld db = new DbContextWorld();
-        public Country country = new Country();
-        public City city = new City();
+        public Country country;
+        public City city ;
+        /// <summary>
+        /// добавление страны
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            country = new Country();
             if (listBoxCountry != null)
             {
                 foreach (var item in listBoxCountry.Items)
@@ -45,7 +51,6 @@ namespace WinFormsApp02._07._22
                 country.Population = Convert.ToInt32(txtPopulation.Text);
                 country.InternationalCode = Convert.ToInt32(txtCode.Text);
                 listBoxCountry.Items.Add(country.Name);
-                db.GetCountries.Add(country);
                 db.Countries.Add(country);
                 db.SaveChanges();
             }
@@ -55,9 +60,14 @@ namespace WinFormsApp02._07._22
             }
 
         }
-
+        /// <summary>
+        /// добавление города
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddCity_Click(object sender, EventArgs e)
         {
+            city = new City();
             if (listBoxCity != null)
             {
                 foreach (var item in listBoxCity.Items)
@@ -101,10 +111,12 @@ namespace WinFormsApp02._07._22
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
-    
+    /// <summary>
+    /// загрузка формы
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
 
         private void FormWorld_Load(object sender, EventArgs e)
         {
@@ -123,34 +135,42 @@ namespace WinFormsApp02._07._22
                 }
             }
         }
-
+        /// <summary>
+        /// выход из приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
+        /// <summary>
+        /// удаление страны
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemoveCountry_Click(object sender, EventArgs e)
         {
+            if (listBoxCountry.SelectedItem==null)
+            {
+                MessageBox.Show("Не выбран элемент для удаления");
+            }
             if(listBoxCountry!=null)
             {
                 try
                 {
-
-                foreach(var item in db.GetCountries)
-                {
-                    if(listBoxCountry.SelectedItem.ToString()==item.Name&&item.cities!=null)   
-                    {
-                        db.GetCountries.Remove(item);
-                        db.SaveChanges();
-                    }
-                }
                 foreach (var item in db.Countries)
                 {
-                    if (listBoxCountry.SelectedItem.ToString() == item.Name && item.cities != null)
+                    if (listBoxCountry.SelectedItem.ToString() == item.Name && item.cities == null)
                     {
                         db.Countries.Remove(item);
                         db.SaveChanges();
                     }
+                    if(item.cities != null)
+                        {
+                                 MessageBox.Show("Список городов этой страны не пуст." +
+                                        " Сначала удалите все города из списка этой страны.");
+                        }
                 }
                 
                 }
@@ -172,20 +192,17 @@ namespace WinFormsApp02._07._22
 
         private void txtName_MouseClick(object sender, MouseEventArgs e)
         {
-            txtName.Text = null;
-            txtName.BackColor = Color.Beige;
+            
         }
 
         private void txtCode_MouseClick(object sender, MouseEventArgs e)
         {
-            txtCode.Text = null;
-            txtCode.BackColor= Color.Beige;
+            
         }
 
         private void txtPopulation_MouseClick(object sender, MouseEventArgs e)
         {
-            txtPopulation.Text = null;
-            txtPopulation.BackColor = Color.Beige;
+            
         }
 
         private void txtNameCity_DoubleClick(object sender, EventArgs e)
@@ -205,7 +222,11 @@ namespace WinFormsApp02._07._22
             txtPopulationCity.Text = null;
             txtPopulationCity.BackColor = Color.Beige;
         }
-
+        /// <summary>
+        /// удаление города
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemoveCity_Click(object sender, EventArgs e)
         {
             while(listBoxCity.Items==null)
@@ -225,14 +246,14 @@ namespace WinFormsApp02._07._22
                     if(item.Name==listBoxCity.SelectedItem.ToString())
                     {
                              db.Cities.Remove(item);
-                    
-                    foreach(var item1 in db.Countries)
-                    {
-                       if(item1.cities.Contains(item))
+
+                        foreach (var item1 in db.Countries)
                         {
-                            item1.cities.Remove(item);
+                            if (item1.cities.Contains(item))
+                            {
+                                item1.cities.Remove(item);
+                            }
                         }
-                    }
                     }
                     db.SaveChanges();
                 }
@@ -243,6 +264,24 @@ namespace WinFormsApp02._07._22
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void txtName_DoubleClick(object sender, EventArgs e)
+        {
+            txtName.Text = null;
+            txtName.BackColor = Color.Beige;
+        }
+
+        private void txtCode_DoubleClick(object sender, EventArgs e)
+        {
+            txtCode.Text = null;
+            txtCode.BackColor = Color.Beige;
+        }
+
+        private void txtPopulation_DoubleClick(object sender, EventArgs e)
+        {
+            txtPopulation.Text = null;
+            txtPopulation.BackColor = Color.Beige;
         }
     }
     }

@@ -10,7 +10,7 @@ using WinFormsApp02._07._22.ApplicationDBContext;
 namespace WinFormsApp02._07._22.Migrations
 {
     [DbContext(typeof(DbContextWorld))]
-    [Migration("20220703212643_world")]
+    [Migration("20220704210702_world")]
     partial class world
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

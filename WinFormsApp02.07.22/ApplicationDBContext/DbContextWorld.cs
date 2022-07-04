@@ -10,7 +10,7 @@ namespace WinFormsApp02._07._22.ApplicationDBContext
 {
     public class DbContextWorld:DbContext
     {
-        public List<Country> GetCountries { get; set; } = new List<Country>();
+        
         public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<City> Cities { get; set; } = null!;
 

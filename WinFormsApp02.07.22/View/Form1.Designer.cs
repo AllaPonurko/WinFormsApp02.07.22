@@ -68,6 +68,7 @@ namespace WinFormsApp02._07._22
             this.txtName.Size = new System.Drawing.Size(120, 23);
             this.txtName.TabIndex = 1;
             this.txtName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtName_MouseClick);
+            this.txtName.DoubleClick += new System.EventHandler(this.txtName_DoubleClick);
             // 
             // btnAdd
             // 
@@ -86,6 +87,7 @@ namespace WinFormsApp02._07._22
             this.txtCode.Size = new System.Drawing.Size(120, 23);
             this.txtCode.TabIndex = 3;
             this.txtCode.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCode_MouseClick);
+            this.txtCode.DoubleClick += new System.EventHandler(this.txtCode_DoubleClick);
             // 
             // txtPopulation
             // 
@@ -94,6 +96,7 @@ namespace WinFormsApp02._07._22
             this.txtPopulation.Size = new System.Drawing.Size(120, 23);
             this.txtPopulation.TabIndex = 4;
             this.txtPopulation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPopulation_MouseClick);
+            this.txtPopulation.DoubleClick += new System.EventHandler(this.txtPopulation_DoubleClick);
             // 
             // labelName
             // 
