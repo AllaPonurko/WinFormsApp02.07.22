@@ -173,6 +173,7 @@ namespace WinFormsApp02._07._22
             if (listBoxCountry.SelectedItem==null)
             {
                 MessageBox.Show("Не выбран элемент для удаления");
+                return;
             }
             if(listBoxCountry!=null)
             {
@@ -183,7 +184,6 @@ namespace WinFormsApp02._07._22
                     if (listBoxCountry.SelectedItem.ToString() == item.Name && item.cities == null)
                     {
                         db.Countries.Remove(item);
-                        db.SaveChanges();
                     }
                     if(item.cities != null)
                         {
@@ -191,7 +191,7 @@ namespace WinFormsApp02._07._22
                                         " Сначала удалите все города из списка этой страны.");
                         }
                 }
-                
+                db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -278,13 +278,13 @@ namespace WinFormsApp02._07._22
                     }
                     
                 }
-                
+               db.SaveChanges();  
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-         db.SaveChanges();
+        
         }
 
         private void txtName_DoubleClick(object sender, EventArgs e)
@@ -346,10 +346,12 @@ namespace WinFormsApp02._07._22
                     foreach(var item in db.Countries)
                     {
                       if(listBoxCountry.SelectedItem.ToString()==item.Name)
+                    { 
                         country.txtNameCountry.Text = item.Name;
                         country.txtCodeCountry.Text = item.InternationalCode.ToString();
                         country.txtPopulationCountry.Text = item.Population.ToString();
                     }
+                }
                   
                 }
                 catch (Exception ex)
@@ -357,6 +359,38 @@ namespace WinFormsApp02._07._22
                     MessageBox.Show(ex.Message);
                 }
             }
+        /// <summary>
+        /// редактирование города
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditCity_Click(object sender, EventArgs e)
+        {
+            if (listBoxCity.SelectedItem == null)
+            {
+                MessageBox.Show("Город не выбран");
+                return;
+            }
+            try
+            {
+                FormEditCity city  = new FormEditCity(this);
+                city.Show();
+                foreach (var item in db.Cities)
+                {
+                    if (listBoxCity.SelectedItem.ToString() == item.Name)
+                    {
+                        city.txtNameCity.Text = item.Name;
+                        city.txtCodeCity.Text = item.Postcode.ToString();
+                        city.txtPopulationCity.Text = item.Population.ToString();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
     }
 

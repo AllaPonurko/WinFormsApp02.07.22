@@ -73,6 +73,7 @@ namespace WinFormsApp02._07._22.View
             // 
             // txtNameCountry
             // 
+            this.txtNameCountry.Enabled = false;
             this.txtNameCountry.Location = new System.Drawing.Point(83, 54);
             this.txtNameCountry.Name = "txtNameCountry";
             this.txtNameCountry.Size = new System.Drawing.Size(100, 23);
@@ -80,6 +81,7 @@ namespace WinFormsApp02._07._22.View
             // 
             // txtCodeCountry
             // 
+            this.txtCodeCountry.Enabled = false;
             this.txtCodeCountry.Location = new System.Drawing.Point(83, 94);
             this.txtCodeCountry.Name = "txtCodeCountry";
             this.txtCodeCountry.Size = new System.Drawing.Size(100, 23);
@@ -87,6 +89,7 @@ namespace WinFormsApp02._07._22.View
             // 
             // txtPopulationCountry
             // 
+            this.txtPopulationCountry.Enabled = false;
             this.txtPopulationCountry.Location = new System.Drawing.Point(83, 133);
             this.txtPopulationCountry.Name = "txtPopulationCountry";
             this.txtPopulationCountry.Size = new System.Drawing.Size(100, 23);
@@ -173,7 +176,7 @@ namespace WinFormsApp02._07._22.View
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormEditCountry";
-            this.Text = "FormEditCountry";
+            this.Text = "Редактирование страны";
             this.Load += new System.EventHandler(this.FormEditCountry_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

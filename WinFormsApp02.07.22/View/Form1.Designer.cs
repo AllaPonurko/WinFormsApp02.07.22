@@ -266,6 +266,7 @@ namespace WinFormsApp02._07._22
             this.btnEditCity.TabIndex = 22;
             this.btnEditCity.Text = "Редактировать город";
             this.btnEditCity.UseVisualStyleBackColor = true;
+            this.btnEditCity.Click += new System.EventHandler(this.btnEditCity_Click);
             // 
             // FormWorld
             // 
