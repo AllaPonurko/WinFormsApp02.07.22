@@ -29,6 +29,7 @@ namespace WinFormsApp02._07._22
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBoxCountry = new System.Windows.Forms.ListBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -50,6 +51,9 @@ namespace WinFormsApp02._07._22
             this.btnExit = new System.Windows.Forms.Button();
             this.btnRemoveCountry = new System.Windows.Forms.Button();
             this.btnRemoveCity = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnEditCountry = new System.Windows.Forms.Button();
+            this.btnEditCity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxCountry
@@ -76,7 +80,7 @@ namespace WinFormsApp02._07._22
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 23);
             this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Добавить";
+            this.btnAdd.Text = "Добавить страну";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -142,6 +146,7 @@ namespace WinFormsApp02._07._22
             this.listBoxCity.Name = "listBoxCity";
             this.listBoxCity.Size = new System.Drawing.Size(120, 259);
             this.listBoxCity.TabIndex = 9;
+            this.listBoxCity.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listBoxCity_MouseMove);
             // 
             // labelListCity
             // 
@@ -201,7 +206,7 @@ namespace WinFormsApp02._07._22
             this.btnAddCity.Name = "btnAddCity";
             this.btnAddCity.Size = new System.Drawing.Size(120, 23);
             this.btnAddCity.TabIndex = 12;
-            this.btnAddCity.Text = "Добавить";
+            this.btnAddCity.Text = "Добавить город";
             this.btnAddCity.UseVisualStyleBackColor = true;
             this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
@@ -243,11 +248,32 @@ namespace WinFormsApp02._07._22
             this.btnRemoveCity.UseVisualStyleBackColor = true;
             this.btnRemoveCity.Click += new System.EventHandler(this.btnRemoveCity_Click);
             // 
+            // btnEditCountry
+            // 
+            this.btnEditCountry.Location = new System.Drawing.Point(319, 227);
+            this.btnEditCountry.Name = "btnEditCountry";
+            this.btnEditCountry.Size = new System.Drawing.Size(105, 23);
+            this.btnEditCountry.TabIndex = 21;
+            this.btnEditCountry.Text = "Редактировать страну";
+            this.btnEditCountry.UseVisualStyleBackColor = true;
+            this.btnEditCountry.Click += new System.EventHandler(this.btnEditCountry_Click);
+            // 
+            // btnEditCity
+            // 
+            this.btnEditCity.Location = new System.Drawing.Point(622, 227);
+            this.btnEditCity.Name = "btnEditCity";
+            this.btnEditCity.Size = new System.Drawing.Size(100, 23);
+            this.btnEditCity.TabIndex = 22;
+            this.btnEditCity.Text = "Редактировать город";
+            this.btnEditCity.UseVisualStyleBackColor = true;
+            // 
             // FormWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEditCity);
+            this.Controls.Add(this.btnEditCountry);
             this.Controls.Add(this.btnRemoveCity);
             this.Controls.Add(this.btnRemoveCountry);
             this.Controls.Add(this.btnExit);
@@ -300,6 +326,9 @@ namespace WinFormsApp02._07._22
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnRemoveCountry;
         private System.Windows.Forms.Button btnRemoveCity;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnEditCountry;
+        private System.Windows.Forms.Button btnEditCity;
     }
 }
 

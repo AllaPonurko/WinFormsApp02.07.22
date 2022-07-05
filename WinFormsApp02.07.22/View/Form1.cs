@@ -12,9 +12,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsApp02._07._22.ApplicationDBContext;
 using WinFormsApp02._07._22.Entities;
+using WinFormsApp02._07._22.View;
 
 namespace WinFormsApp02._07._22
 {
+    public struct DataCountry
+        {
+            public string Name;
+            public int Code;
+            public int Population;
+        }
+    public struct DataCity
+    {
+        public string Name;
+        public int Code;
+        public int Population;
+
+    }
     public partial class FormWorld : Form
     {
         public FormWorld()
@@ -22,9 +36,14 @@ namespace WinFormsApp02._07._22
             InitializeComponent();
 
         }
-        DbContextWorld db = new DbContextWorld();
+        static public DbContextWorld db = new DbContextWorld();
         public Country country;
         public City city ;
+        /// <summary>
+        /// статическая переменная для переноса данных
+        /// </summary>
+         static public DataCountry dataCountry;
+         static public DataCity dataCity; 
         /// <summary>
         /// добавление страны
         /// </summary>
@@ -239,6 +258,8 @@ namespace WinFormsApp02._07._22
                 MessageBox.Show("Не выбран город для удаления");
                 return;
             }
+            
+            //if(ShowDialog()==DialogResult.OK)
             try
             {
                 foreach(var item in db.Cities)
@@ -255,7 +276,7 @@ namespace WinFormsApp02._07._22
                             }
                         }
                     }
-                    db.SaveChanges();
+                    
                 }
                 
             }
@@ -263,7 +284,7 @@ namespace WinFormsApp02._07._22
             {
                 MessageBox.Show(ex.Message);
             }
-
+         db.SaveChanges();
         }
 
         private void txtName_DoubleClick(object sender, EventArgs e)
@@ -283,6 +304,59 @@ namespace WinFormsApp02._07._22
             txtPopulation.Text = null;
             txtPopulation.BackColor = Color.Beige;
         }
+
+        private void listBoxCity_MouseMove(object sender, MouseEventArgs e)
+        {
+            //try 
+            //{
+            //    if(listBoxCity.Items!=null&&listBoxCity.SelectedItem!=null)
+            //{
+            //    foreach(var itemCity in db.Cities)
+            //    {
+            //        foreach(var itemCountry in db.Countries)
+            //        {
+            //            if (listBoxCity.SelectedItem.ToString() == itemCity.Name &&
+            //                itemCountry.cities.Contains(itemCity))
+            //                toolTip1.SetToolTip(listBoxCity, itemCountry.ToString());
+            //        }
+            //    }
+            //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+        }
+        /// <summary>
+        /// редактирование страны
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditCountry_Click(object sender, EventArgs e)
+        {if (listBoxCountry.SelectedItem == null)
+            {
+                MessageBox.Show("Страна не выбрана");
+                return;
+            }
+            try
+                {
+                    FormEditCountry country = new FormEditCountry(this);
+                    country.Show();
+                    foreach(var item in db.Countries)
+                    {
+                      if(listBoxCountry.SelectedItem.ToString()==item.Name)
+                        country.txtNameCountry.Text = item.Name;
+                        country.txtCodeCountry.Text = item.InternationalCode.ToString();
+                        country.txtPopulationCountry.Text = item.Population.ToString();
+                    }
+                  
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
     }
     }
 
