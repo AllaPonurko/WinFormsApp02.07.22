@@ -181,30 +181,28 @@ namespace WinFormsApp02._07._22
                 {
                 foreach (var item in db.Countries)
                 {
-                    if (listBoxCountry.SelectedItem.ToString() == item.Name && item.cities == null)
+                    if (listBoxCountry.SelectedItem.ToString() == item.Name && item.cities.Count==0)
                     {
-                        db.Countries.Remove(item);
+                       db.Countries.Remove(item);
+                       db.SaveChanges();
+                       listBoxCountry.Items.RemoveAt(listBoxCountry.SelectedIndex);
                     }
-                    if(item.cities != null)
+                        
+                    if(listBoxCountry.SelectedItem.ToString() == item.Name && item.cities.Count!=0)
                         {
                                  MessageBox.Show("Список городов этой страны не пуст." +
                                         " Сначала удалите все города из списка этой страны.");
+                            return;
                         }
                 }
-                db.SaveChanges();
+                
+                
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                try
-                {
-                     listBoxCountry.Items.RemoveAt(listBoxCountry.SelectedIndex);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                
             }
 
         }
@@ -259,30 +257,30 @@ namespace WinFormsApp02._07._22
                 return;
             }
             
-            //if(ShowDialog()==DialogResult.OK)
-            try
+            if (listBoxCity.SelectedItem !=null)
             {
-                foreach(var item in db.Cities)
+                try
                 {
-                    if(item.Name==listBoxCity.SelectedItem.ToString())
+                    foreach (var item1 in db.Countries)
                     {
-                             db.Cities.Remove(item);
-
-                        foreach (var item1 in db.Countries)
-                        {
-                            if (item1.cities.Contains(item))
+                         foreach (var item in db.Cities)
+                         {
+                            if (listBoxCity.SelectedItem.ToString()== item.Name 
+                                &&item1.cities.Contains(item))
                             {
-                                item1.cities.Remove(item);
+                                    item1.cities.Remove(item);
+                                    db.Cities.Remove(item);
                             }
-                        }
+                         }
+                     
                     }
-                    
+                 db.SaveChanges();
+                listBoxCity.Items.Remove(listBoxCity.SelectedItem);   
                 }
-               db.SaveChanges();  
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         
         }
