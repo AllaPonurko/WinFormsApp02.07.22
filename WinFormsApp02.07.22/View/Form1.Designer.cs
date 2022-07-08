@@ -54,6 +54,14 @@ namespace WinFormsApp02._07._22
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditCountry = new System.Windows.Forms.Button();
             this.btnEditCity = new System.Windows.Forms.Button();
+            this.btnShowMillion = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnPopulationCountry = new System.Windows.Forms.Button();
+            this.btnShowCityInCountry = new System.Windows.Forms.Button();
+            this.comboBoxSelect = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxCountry
@@ -268,11 +276,104 @@ namespace WinFormsApp02._07._22
             this.btnEditCity.UseVisualStyleBackColor = true;
             this.btnEditCity.Click += new System.EventHandler(this.btnEditCity_Click);
             // 
+            // btnShowMillion
+            // 
+            this.btnShowMillion.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnShowMillion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowMillion.Location = new System.Drawing.Point(622, 4);
+            this.btnShowMillion.Name = "btnShowMillion";
+            this.btnShowMillion.Size = new System.Drawing.Size(33, 23);
+            this.btnShowMillion.TabIndex = 23;
+            this.btnShowMillion.UseVisualStyleBackColor = false;
+            this.btnShowMillion.Click += new System.EventHandler(this.btnShowMillion_Click);
+            this.btnShowMillion.MouseEnter += new System.EventHandler(this.btnShowMillion_MouseEnter);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(700, 33);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(33, 23);
+            this.btnClear.TabIndex = 24;
+            this.btnClear.Text = "O";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.MouseEnter += new System.EventHandler(this.btnClear_MouseEnter);
+            // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(661, 33);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(33, 23);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(622, 33);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(33, 23);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnPopulationCountry
+            // 
+            this.btnPopulationCountry.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnPopulationCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPopulationCountry.Location = new System.Drawing.Point(700, 4);
+            this.btnPopulationCountry.Name = "btnPopulationCountry";
+            this.btnPopulationCountry.Size = new System.Drawing.Size(33, 23);
+            this.btnPopulationCountry.TabIndex = 27;
+            this.btnPopulationCountry.UseVisualStyleBackColor = false;
+            this.btnPopulationCountry.Click += new System.EventHandler(this.btnPopulationCountry_Click);
+            this.btnPopulationCountry.MouseEnter += new System.EventHandler(this.btnPopulationCountry_MouseEnter);
+            // 
+            // btnShowCityInCountry
+            // 
+            this.btnShowCityInCountry.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnShowCityInCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowCityInCountry.Location = new System.Drawing.Point(661, 4);
+            this.btnShowCityInCountry.Name = "btnShowCityInCountry";
+            this.btnShowCityInCountry.Size = new System.Drawing.Size(33, 23);
+            this.btnShowCityInCountry.TabIndex = 28;
+            this.btnShowCityInCountry.UseVisualStyleBackColor = false;
+            this.btnShowCityInCountry.Click += new System.EventHandler(this.btnShowCityInCountry_Click);
+            this.btnShowCityInCountry.MouseEnter += new System.EventHandler(this.btnShowCityInCountry_MouseEnter);
+            // 
+            // comboBoxSelect
+            // 
+            this.comboBoxSelect.FormattingEnabled = true;
+            this.comboBoxSelect.Location = new System.Drawing.Point(622, 96);
+            this.comboBoxSelect.Name = "comboBoxSelect";
+            this.comboBoxSelect.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxSelect.TabIndex = 29;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(622, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(143, 15);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Информация для показа";
+            // 
             // FormWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBoxSelect);
+            this.Controls.Add(this.btnShowCityInCountry);
+            this.Controls.Add(this.btnPopulationCountry);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnShowMillion);
             this.Controls.Add(this.btnEditCity);
             this.Controls.Add(this.btnEditCountry);
             this.Controls.Add(this.btnRemoveCity);
@@ -330,6 +431,14 @@ namespace WinFormsApp02._07._22
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnEditCountry;
         private System.Windows.Forms.Button btnEditCity;
+        private System.Windows.Forms.Button btnShowMillion;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPopulationCountry;
+        private System.Windows.Forms.Button btnShowCityInCountry;
+        private System.Windows.Forms.ComboBox comboBoxSelect;
+        private System.Windows.Forms.Label label4;
     }
 }
 

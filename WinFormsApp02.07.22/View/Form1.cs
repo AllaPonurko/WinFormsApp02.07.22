@@ -115,6 +115,7 @@ namespace WinFormsApp02._07._22
                         city.Population = Convert.ToInt32(txtPopulationCity.Text);
                         city.Postcode = Convert.ToInt32(txtPostCard.Text);
                         listBoxCity.Items.Add(city.Name); 
+
                         db.Cities.Add(city);
                         
                 foreach (var item in db.Countries)
@@ -256,8 +257,8 @@ namespace WinFormsApp02._07._22
                 MessageBox.Show("Не выбран город для удаления");
                 return;
             }
-            
-            if (listBoxCity.SelectedItem !=null)
+
+            if (listBoxCity.Items != null && listBoxCity.SelectedItem != null)
             {
                 try
                 {
@@ -268,13 +269,15 @@ namespace WinFormsApp02._07._22
                             if (listBoxCity.SelectedItem.ToString()== item.Name 
                                 &&item1.cities.Contains(item))
                             {
-                                    item1.cities.Remove(item);
-                                    db.Cities.Remove(item);
+                                item1.cities.Remove(item);
+                                db.Cities.Remove(item);
+                                
+                                db.SaveChanges();
                             }
+                            
                          }
-                     
                     }
-                 db.SaveChanges();
+                 
                 listBoxCity.Items.Remove(listBoxCity.SelectedItem);   
                 }
                 catch (Exception ex)
@@ -282,7 +285,7 @@ namespace WinFormsApp02._07._22
                     MessageBox.Show(ex.Message);
                 }
             }
-        
+
         }
 
         private void txtName_DoubleClick(object sender, EventArgs e)
@@ -388,6 +391,104 @@ namespace WinFormsApp02._07._22
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnShowMillion_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnShowMillion, "Показать города-миллионики");
+        }
+
+        private void btnShowMillion_Click(object sender, EventArgs e)
+        {
+            comboBoxSelect.Items.Clear();
+            if (listBoxCity.Items == null)
+                MessageBox.Show("Нет городов для показа");
+            try
+            {
+                var towns = (from city in db.Cities
+                             where city.Population >= 1000000
+                             select city).ToList();
+                comboBoxSelect.Items.AddRange(towns.ToArray());
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnShowCityInCountry_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnShowCityInCountry, "Показать все города выбранной страны");
+        }
+
+        private void btnShowCityInCountry_Click(object sender, EventArgs e)
+        {
+            comboBoxSelect.Items.Clear();
+            if (listBoxCountry.Items == null || listBoxCity.Items == null)
+                MessageBox.Show("Нет городов для показа");
+            if(listBoxCountry.SelectedItem==null)
+                MessageBox.Show("Не выбрана страна");
+            if(listBoxCountry.SelectedItem != null)
+            try
+            {
+                    foreach(var item in db.Countries)
+                    {
+                       if(listBoxCountry.SelectedItem.ToString()==item.Name)
+                        {
+                            comboBoxSelect.Items.AddRange(item.cities.ToArray());
+                        }
+                    }
+                //var town = (from city in db.Cities.Include(c => c.country)
+                //            where city.CountryId == country.Id
+                //            select city).ToList();
+                //comboBoxSelect.Items.AddRange(town.ToArray());
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnPopulationCountry_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnPopulationCountry, "Показать численность" +
+                " населения выбранной страны");
+        }
+
+        private void btnPopulationCountry_Click(object sender, EventArgs e)
+        {
+            comboBoxSelect.Items.Clear();
+            if (listBoxCountry.SelectedItem == null)
+                MessageBox.Show("Не выбрана страна");
+            if (listBoxCountry.Items == null )
+                MessageBox.Show("Список стран пуст!");
+            if (listBoxCountry.SelectedItem != null)
+                try
+                {
+                    foreach (var item in db.Countries)
+                    {
+                        if (listBoxCountry.SelectedItem.ToString() == item.Name)
+                        {
+                            comboBoxSelect.Items.Add(item.Population.ToString());
+                        }
+                    }
+                    //var c = (from country in db.Countries
+                    //            where country.Name == listBoxCountry.SelectedItem.ToString()
+                    //         select country.Population).ToString());
+                    //comboBoxSelect.Items.Add(c);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+        }
+
+        private void btnClear_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnClear, "Oчистить информацию для показа");
         }
     }
     }
