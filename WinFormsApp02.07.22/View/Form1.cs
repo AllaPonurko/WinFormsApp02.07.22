@@ -490,6 +490,11 @@ namespace WinFormsApp02._07._22
         {
             toolTip1.SetToolTip(btnClear, "Oчистить информацию для показа");
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            comboBoxSelect.Items.Clear();
+        }
     }
     }
 

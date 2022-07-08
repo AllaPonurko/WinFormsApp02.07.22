@@ -298,6 +298,7 @@ namespace WinFormsApp02._07._22
             this.btnClear.TabIndex = 24;
             this.btnClear.Text = "O";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             this.btnClear.MouseEnter += new System.EventHandler(this.btnClear_MouseEnter);
             // 
             // button3
