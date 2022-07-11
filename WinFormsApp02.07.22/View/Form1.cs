@@ -466,17 +466,17 @@ namespace WinFormsApp02._07._22
             if (listBoxCountry.SelectedItem != null)
                 try
                 {
-                    foreach (var item in db.Countries)
-                    {
-                        if (listBoxCountry.SelectedItem.ToString() == item.Name)
-                        {
-                            comboBoxSelect.Items.Add(item.Population.ToString());
-                        }
-                    }
-                    //var c = (from country in db.Countries
-                    //            where country.Name == listBoxCountry.SelectedItem.ToString()
-                    //         select country.Population).ToString());
-                    //comboBoxSelect.Items.Add(c);
+                    //foreach (var item in db.Countries)
+                    //{
+                    //    if (listBoxCountry.SelectedItem.ToString() == item.Name)
+                    //    {
+                    //        comboBoxSelect.Items.Add(item.Population.ToString());
+                    //    }
+                    //}
+                    var c = (from country in db.Countries
+                             where country.Name == listBoxCountry.SelectedItem.ToString()
+                             select country.Population).First();
+                    comboBoxSelect.Items.Add(Convert.ToInt32(c));
 
                 }
                 catch (Exception ex)
