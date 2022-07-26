@@ -21,9 +21,9 @@ namespace WinFormsApp02._07._22.Entities
             Name = Name;
             InternationalCode = InternationalCode;
             Population = Population;
-            
+            cities  = new List<City>();
         }
-        public List<City> cities { get; set; } = new List<City>();
+        public List<City> cities { get; set; }
         public override string ToString()
         {
             return Name;

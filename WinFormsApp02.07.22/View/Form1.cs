@@ -393,90 +393,26 @@ namespace WinFormsApp02._07._22
             }
         }
 
-        private void btnShowMillion_MouseEnter(object sender, EventArgs e)
+        
+        
+        /// <summary>
+        /// Выборки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxSelect_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(btnShowMillion, "Показать города-миллионики");
-        }
-
-        private void btnShowMillion_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-            if (listBoxCity.Items == null)
-                MessageBox.Show("Нет городов для показа");
-            try
+            if(comboBoxSelect.SelectedIndex==0)//Показать города-миллионики
             {
-                var towns = (from city in db.Cities
-                             where city.Population >= 1000000
-                             select city).ToList();
-                comboBoxSelect.Items.AddRange(towns.ToArray());
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnShowCityInCountry_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(btnShowCityInCountry, "Показать все города выбранной страны");
-        }
-
-        private void btnShowCityInCountry_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-            if (listBoxCountry.Items == null || listBoxCity.Items == null)
-                MessageBox.Show("Нет городов для показа");
-            if(listBoxCountry.SelectedItem==null)
-                MessageBox.Show("Не выбрана страна");
-            if(listBoxCountry.SelectedItem != null)
-            try
-            {
-                    foreach(var item in db.Countries)
-                    {
-                       if(listBoxCountry.SelectedItem.ToString()==item.Name)
-                        {
-                            comboBoxSelect.Items.AddRange(item.cities.ToArray());
-                        }
-                    }
-                //var town = (from city in db.Cities.Include(c => c.country)
-                //            where city.CountryId == country.Id
-                //            select city).ToList();
-                //comboBoxSelect.Items.AddRange(town.ToArray());
-
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnPopulationCountry_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(btnPopulationCountry, "Показать численность" +
-                " населения выбранной страны");
-        }
-
-        private void btnPopulationCountry_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-            if (listBoxCountry.SelectedItem == null)
-                MessageBox.Show("Не выбрана страна");
-            if (listBoxCountry.Items == null )
-                MessageBox.Show("Список стран пуст!");
-            if (listBoxCountry.SelectedItem != null)
+                listBoxSelect.Items.Clear();
+                if (listBoxCity.Items == null)
+                    MessageBox.Show("Нет городов для показа");
                 try
                 {
-                    //foreach (var item in db.Countries)
-                    //{
-                    //    if (listBoxCountry.SelectedItem.ToString() == item.Name)
-                    //    {
-                    //        comboBoxSelect.Items.Add(item.Population.ToString());
-                    //    }
-                    //}
-                    var c = (from country in db.Countries
-                             where country.Name == listBoxCountry.SelectedItem.ToString()
-                             select country.Population).First();
-                    comboBoxSelect.Items.Add(Convert.ToInt32(c));
+                    var towns = (from city in db.Cities
+                                 where city.Population >= 1000000
+                                 select city).ToList();
+                    listBoxSelect.Items.AddRange(towns.ToArray());
 
                 }
                 catch (Exception ex)
@@ -484,101 +420,129 @@ namespace WinFormsApp02._07._22
                     MessageBox.Show(ex.Message);
                 }
 
-        }
-
-        private void btnClear_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(btnClear, "Oчистить информацию для показа");
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-        }
-
-        private void button4_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(button4, "Показать город с минимальным населением в выбранной стране");
-        }
-        /// <summary>
-        /// Показать город с минимальным населением в выбранной стране
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button4_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-            if (listBoxCountry.SelectedItem == null)
-                MessageBox.Show("Не выбрана страна");
-            if (listBoxCountry.Items == null)
-                MessageBox.Show("Список стран пуст!");
-            try
-            {
-
-            var countries = (from country in db.Countries
-                             where country.Name == listBoxCountry.SelectedItem.ToString()
-                             select country).First();
-            var cities = (from city in db.Cities
-                          where countries.Id == city.CountryId
-                          select city).ToList();
-                
-            List<int> ar = new List<int>();
-            foreach(var item in cities)
-            {
-                ar.Add(item.Population);                  
             }
-            int minValue = ar.Min<int>();
-            var c = (from city in cities
-                     where city.Population == minValue
-                     select city).First();
-            comboBoxSelect.Items.Add(c.Name + " " + Convert.ToInt32(minValue));
-            }
-            catch(Exception ex)
+            if (comboBoxSelect.SelectedIndex == 1)//город с максимальным населением в выбранной стране
             {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void button3_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(button3, "Показать город с максимальным населением в выбранной стране");
-        }
-        /// <summary>
-        /// Показать город с максимальным населением в выбранной стране
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button3_Click(object sender, EventArgs e)
-        {
-            comboBoxSelect.Items.Clear();
-            if (listBoxCountry.SelectedItem == null)
-                MessageBox.Show("Не выбрана страна");
-            if (listBoxCountry.Items == null)
-                MessageBox.Show("Список стран пуст!");
-            try
-            {
-
-                var countries = (from country in db.Countries
-                                 where country.Name == listBoxCountry.SelectedItem.ToString()
-                                 select country).First();
-                var cities = (from city in db.Cities
-                              where countries.Id == city.CountryId
-                              select city).ToList();
-
-                List<int> ar = new List<int>();
-                foreach (var item in cities)
+                listBoxSelect.Items.Clear();
+                if (listBoxCountry.SelectedItem == null)
+                    MessageBox.Show("Не выбрана страна");
+                if (listBoxCountry.Items == null)
+                    MessageBox.Show("Список стран пуст!");
+                try
                 {
-                    ar.Add(item.Population);
+                    var countries = (from country in db.Countries
+                                     where country.Name == listBoxCountry.SelectedItem.ToString()
+                                     select country).First();
+                    var cities = (from city in db.Cities
+                                  where countries.Id == city.CountryId
+                                  select city).ToList();
+
+                    List<int> ar = new List<int>();
+                    foreach (var item in cities)
+                    {
+                        ar.Add(item.Population);
+                    }
+                    int maxValue = ar.Max<int>();
+                    var c = (from city in cities
+                             where city.Population == maxValue
+                             select city).First();
+                    listBoxSelect.Items.Add(c.Name + " " + Convert.ToInt32(maxValue));
                 }
-                int maxValue = ar.Max<int>();
-                var c = (from city in cities
-                         where city.Population == maxValue
-                         select city).First();
-                comboBoxSelect.Items.Add(c.Name + " " + Convert.ToInt32(maxValue));
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
             }
-            catch (Exception ex)
+            if (comboBoxSelect.SelectedIndex == 2)//город с минимальным населением в выбранной стране
             {
-                MessageBox.Show(ex.Message);
+                listBoxSelect.Items.Clear();
+                if (listBoxCountry.SelectedItem == null)
+                    MessageBox.Show("Не выбрана страна");
+                if (listBoxCountry.Items == null)
+                    MessageBox.Show("Список стран пуст!");
+                try
+                {
+                    var countries = (from country in db.Countries
+                                     where country.Name == listBoxCountry.SelectedItem.ToString()
+                                     select country).First();
+                    var cities = (from city in db.Cities
+                                  where countries.Id == city.CountryId
+                                  select city).ToList();
+
+                    List<int> ar = new List<int>();
+                    foreach (var item in cities)
+                    {
+                        ar.Add(item.Population);
+                    }
+                    int minValue = ar.Min<int>();
+                    var c = (from city in cities
+                             where city.Population == minValue
+                             select city).First();
+                    listBoxSelect.Items.Add(c.Name + " " + Convert.ToInt32(minValue));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            if (comboBoxSelect.SelectedIndex == 3)//Показать все города выбранной страны
+            {
+                listBoxSelect.Items.Clear();
+                if (listBoxCountry.Items == null || listBoxCity.Items == null)
+                    MessageBox.Show("Нет городов для показа");
+                if (listBoxCountry.SelectedItem == null)
+                    MessageBox.Show("Не выбрана страна");
+                if (listBoxCountry.SelectedItem != null)
+                    try
+                    {
+                        foreach (var item in db.Countries)
+                        {
+                            if (listBoxCountry.SelectedItem.ToString() == item.Name)
+                            {
+                                listBoxSelect.Items.AddRange(item.cities.ToArray());
+                            }
+                        }
+                        //var town = (from city in db.Cities.Include(c => c.country)
+                        //            where city.CountryId == country.Id
+                        //            select city).ToList();
+                        //comboBoxSelect.Items.AddRange(town.ToArray());
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+            }
+            if (comboBoxSelect.SelectedIndex == 4)//Показать численность населения выбранной страны     
+            {
+                listBoxSelect.Items.Clear();
+                if (listBoxCountry.SelectedItem == null)
+                    MessageBox.Show("Не выбрана страна");
+                if (listBoxCountry.Items == null)
+                    MessageBox.Show("Список стран пуст!");
+                if (listBoxCountry.SelectedItem != null)
+                    try
+                    {
+                        //foreach (var item in db.Countries)
+                        //{
+                        //    if (listBoxCountry.SelectedItem.ToString() == item.Name)
+                        //    {
+                        //        listBoxSelect.Items.Add(item.Population.ToString());
+                        //    }
+                        //}
+                        var c = (from country in db.Countries
+                                 where country.Name == listBoxCountry.SelectedItem.ToString()
+                                 select country.Population).First();
+                        listBoxSelect.Items.Add(Convert.ToInt32(c));
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
             }
         }
     }
