@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WinFormsApp02._07._22.ApplicationDBContext;
 
 namespace WinFormsApp02._07._22.Migrations
 {
     [DbContext(typeof(DbContextWorld))]
-    partial class DbContextWorldModelSnapshot : ModelSnapshot
+    [Migration("20220726214444_Capital")]
+    partial class Capital
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

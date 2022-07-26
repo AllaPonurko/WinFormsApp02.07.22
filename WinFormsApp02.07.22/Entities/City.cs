@@ -21,5 +21,6 @@ namespace WinFormsApp02._07._22.Entities
             return Name;
         }
         public Guid CountryId { get; set; }
+        public bool Capital { get; set; }
     }
 }

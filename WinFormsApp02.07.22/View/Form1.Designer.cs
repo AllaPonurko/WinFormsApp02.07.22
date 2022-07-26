@@ -57,6 +57,7 @@ namespace WinFormsApp02._07._22
             this.comboBoxSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxSelect = new System.Windows.Forms.ListBox();
+            this.radioButtonCapital = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // listBoxCountry
@@ -306,11 +307,23 @@ namespace WinFormsApp02._07._22
             this.listBoxSelect.Size = new System.Drawing.Size(143, 94);
             this.listBoxSelect.TabIndex = 31;
             // 
+            // radioButtonCapital
+            // 
+            this.radioButtonCapital.AutoSize = true;
+            this.radioButtonCapital.Location = new System.Drawing.Point(319, 391);
+            this.radioButtonCapital.Name = "radioButtonCapital";
+            this.radioButtonCapital.Size = new System.Drawing.Size(72, 19);
+            this.radioButtonCapital.TabIndex = 32;
+            this.radioButtonCapital.TabStop = true;
+            this.radioButtonCapital.Text = "Столица";
+            this.radioButtonCapital.UseVisualStyleBackColor = true;
+            // 
             // FormWorld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.radioButtonCapital);
             this.Controls.Add(this.listBoxSelect);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxSelect);
@@ -374,6 +387,7 @@ namespace WinFormsApp02._07._22
         private System.Windows.Forms.ComboBox comboBoxSelect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxSelect;
+        private System.Windows.Forms.RadioButton radioButtonCapital;
     }
 }
 

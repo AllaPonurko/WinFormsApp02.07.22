@@ -114,6 +114,7 @@ namespace WinFormsApp02._07._22
                         city.Name = txtNameCity.Text.ToString();
                         city.Population = Convert.ToInt32(txtPopulationCity.Text);
                         city.Postcode = Convert.ToInt32(txtPostCard.Text);
+                        if (radioButtonCapital.Checked) city.Capital = true;
                         listBoxCity.Items.Add(city.Name); 
 
                         db.Cities.Add(city);
@@ -537,6 +538,31 @@ namespace WinFormsApp02._07._22
                                  where country.Name == listBoxCountry.SelectedItem.ToString()
                                  select country.Population).First();
                         listBoxSelect.Items.Add(Convert.ToInt32(c));
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+            }
+            if (comboBoxSelect.SelectedIndex == 5)//показать столицу
+            {
+                listBoxSelect.Items.Clear();
+                if (listBoxCountry.SelectedItem == null)
+                    MessageBox.Show("Не выбрана страна");
+                if (listBoxCountry.Items == null)
+                    MessageBox.Show("Список стран пуст!");
+                if (listBoxCountry.SelectedItem != null)
+                    try
+                    {
+              
+                        var c = (from country in db.Countries
+                                 where country.Name == listBoxCountry.SelectedItem.ToString()
+                                 select country).First();
+                        var capital = (from cities in db.Cities
+                                       where c.Id == cities.CountryId && cities.Capital == true
+                                       select cities).First();
+                        listBoxSelect.Items.Add(capital);
 
                     }
                     catch (Exception ex)
