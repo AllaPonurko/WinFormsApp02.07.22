@@ -570,6 +570,29 @@ namespace WinFormsApp02._07._22
                         MessageBox.Show(ex.Message);
                     }
             }
+            //показать численность населения выбранного города
+            if(comboBoxSelect.SelectedIndex == 6)
+            {
+                listBoxSelect.Items.Clear();
+                if ( listBoxCity.Items == null)
+                    MessageBox.Show("Нет городов для показа");
+                if (listBoxCity.SelectedItem == null)
+                    MessageBox.Show("Не выбран город");
+                if (listBoxCity.SelectedItem != null)
+                    try
+                    {
+                        var c = (from city in db.Cities
+                                 where city.Name == listBoxCity.SelectedItem.ToString()
+                                 select city.Population).First();
+                        listBoxSelect.Items.Add(listBoxCity.SelectedItem.ToString()+" "+
+                            Convert.ToInt32(c));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+            }
         }
     }
     }

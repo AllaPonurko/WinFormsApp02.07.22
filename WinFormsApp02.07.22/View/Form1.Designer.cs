@@ -282,6 +282,7 @@ namespace WinFormsApp02._07._22
             "Все города страны",
             "Численность населения страны",
             "Столица страны",
+            "Численность населения города",
             "3 города с max населением"});
             this.comboBoxSelect.Location = new System.Drawing.Point(622, 74);
             this.comboBoxSelect.Name = "comboBoxSelect";
